@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Vagas - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #0f172a;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        .box {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .header {
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+                url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1400&auto=format&fit=crop') center/cover no-repeat;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1.5rem 2rem;
+}
+        .titles {
+    background: rgba(112, 91, 91, 0);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05);
+    padding: 15;
+}
+        .header-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img span {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .titles {
+            text-align: center;
+            padding: 2rem 1rem 0.5rem 1rem;
+            background: transparent;
+        }
+
+        .title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: rgb(228, 230, 234);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: #3075d6;
+            border-bottom: 2px solid #e2e8f0;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background: #ffffff;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #eef2ff;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1f2937;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            transition: all 0.2s;
+            background: #f8fafc;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 2rem 0 1rem 0;
+            color: #0f172a;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        .form-container {
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .card-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .link-text {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .link-text a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #27ae60;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.erro {
+            background: #e74c3c;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .title { font-size: 2rem; }
+            .header-container { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <header class="header">
+            <div class="header-container">
+                <div class="logo-area">
+                    <div class="logo-img">
+                        <span>PV</span>
+                    </div>
+                </div>
+                <div class="titles">
+                    <h1 class="title">Portal de Vagas</h1>
+                    <h2 class="subtitle">Encontre as melhores oportunidades de estágio e emprego</h2>
+                </div>
+            </div>
+        </header>
+
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="estudantes.html">Área dos Estudantes</a>
+            <a href="cadastro.html">Cadastrar</a>
+            <a href="login.html">Login</a>
+            <a href="empresas.html">Área das Empresas</a>
+            <a href="contactar.html">Contactar</a>
+        </div>
+
+        <h1 class="section-title"> Login</h1>
+
+        <div class="form-container">
+            <div class="card-form">
+                <form onsubmit="return fazerLogin(event)">
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha🔐</label>
+                        <input type="password" id="senha" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Entrar</button>
+                </form>
+                <div class="link-text">
+                    Não tem conta? <a href="cadastro.html">Cadastre-se</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function mostrarToast(mensagem, tipo = 'sucesso') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${tipo === 'erro' ? 'erro' : ''}`;
+            toast.innerHTML = mensagem;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function fazerLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            
+            const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+            const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+            
+            if (usuario) {
+                // Salvar usuário logado com TODOS os dados
+                localStorage.setItem('usuarioLogado', JSON.stringify({
+                    id: usuario.id,
+                    nome: usuario.nome,
+                    email: usuario.email,
+                    telefone: usuario.telefone,
+                    endereco: usuario.endereco,
+                    tipo: usuario.tipo
+                }));
+                
+                mostrarToast(` Login realizado! Bem-vindo(a) ${usuario.nome}!`);
+                
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } else {
+                mostrarToast(' E-mail ou senha incorretos', 'erro');
+            }
+            
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "../../Projecto-PWM/Projeto_PWM"
+		},
+		{
+			"path": "../../Projecto-PWM/Projecto-PWM.2"
+		},
+		{
+			"path": "../../Projecto-PWM/Gerenciador de Vagas"
+		},
+		{
+			"path": "../../Projecto-PWM/base de dados- Gerenciador de vagas"
+		},
+		{
+			"path": "../../Projecto-PWM/.vscode"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Projecto-PWM.2"
+	}
+}

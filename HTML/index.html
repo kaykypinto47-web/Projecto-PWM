@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de Vagas - Encontre as melhores oportunidades de estágio e emprego">
+    <title>Portal de Vagas</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+
+    <div class="box">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-container">
+                <div class="logo-area">
+                    <div class="logo-img">
+                        <span>PV</span>
+                    </div>
+                </div>
+
+                <div class="titles">
+                    <h1 class="title">Portal de Vagas</h1>
+                    <h2 class="subtitle">Encontre as melhores oportunidades de estágio e emprego</h2>
+                </div>
+            </div>
+        </header>
+
+        <!-- NAVEGAÇÃO -->
+        <div class="nav-links">
+            <a href="index.html" class="active">Início</a>
+            <a href="estudantes.html">Área dos Estudantes</a>
+            <a href="cadastro.html">Cadastrar</a>
+            <a href="login.html">Login</a>
+            <a href="empresas.html">Área das Empresas</a>
+            <a href="contactar.html">Contactar</a>
+        </div>
+
+        <!-- FORMULÁRIO DE BUSCA -->
+        <form class="search-form" onsubmit="buscarVagas(event)">
+            <label for="search">Buscar:</label>
+            <input type="text" id="search" name="search" placeholder="Digite sua pesquisa...">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <!-- VAGAS EM DESTAQUE -->
+        <h1 class="section-title">Vagas em Destaque</h1>
+        <div class="featured-jobs" id="vagasContainer">
+            <div class="job-card">
+                <h2 class="job-title">Engenheiro de Informática</h2>
+                <p class="company-name">Tech Company</p>
+                <p class="job-description">Desenvolvimento de sistemas corporativos e manutenção de infraestrutura de TI.</p>
+                <button class="apply-button" onclick="candidatarVaga('Engenheiro de Informática')">Candidatar-se</button>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Estágio em Desenvolvimento Web</h2>
+                <p class="company-name">Tech Solutions</p>
+                <p class="job-description">Buscamos um estagiário para atuar no desenvolvimento de aplicações web utilizando HTML, CSS e JavaScript.</p>
+                <button class="apply-button" onclick="candidatarVaga('Estágio em Desenvolvimento Web')">Candidatar-se</button>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Analista de Marketing Digital</h2>
+                <p class="company-name">Creative Agency</p>
+                <p class="job-description">Procuramos um analista de marketing digital para gerenciar campanhas online e otimizar a presença digital da empresa.</p>
+                <button class="apply-button" onclick="candidatarVaga('Analista de Marketing Digital')">Candidatar-se</button>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Assistente Administrativo</h2>
+                <p class="company-name">Global Corp</p>
+                <p class="job-description">Estamos contratando um assistente administrativo para apoiar as operações diárias do escritório.</p>
+                <button class="apply-button" onclick="candidatarVaga('Assistente Administrativo')">Candidatar-se</button>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Desenvolvedor Software Full-Stack</h2>
+                <p class="company-name">TechFlow Solutions</p>
+                <p class="job-description">Procuramos engenheiros para atuar no ciclo completo de desenvolvimento.</p>
+                <button class="apply-button" onclick="candidatarVaga('Desenvolvedor Software Full-Stack')">Candidatar-se</button>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Analista de Cibersegurança</h2>
+                <p class="company-name">CyberGuard Inc.</p>
+                <p class="job-description">Vaga para monitoramento de infraestrutura, auditoria de sistemas e implementação de protocolos.</p>
+                <button class="apply-button" onclick="candidatarVaga('Analista de Cibersegurança')">Candidatar-se</button>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Engenheiro de Dados / ML</h2>
+                <p class="company-name">DataSphere AI</p>
+                <p class="job-description">Focado na construção de pipelines de dados robustos e treinamento de modelos de ML.</p>
+                <button class="apply-button" onclick="candidatarVaga('Engenheiro de Dados / ML')">Candidatar-se</button>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Engenheiro de DevOps</h2>
+                <p class="company-name">CloudScale Systems</p>
+                <p class="job-description">Responsável pela automação de deploys, gestão de containers e manutenção da arquitetura em nuvem.</p>
+                <button class="apply-button" onclick="candidatarVaga('Engenheiro de DevOps')">Candidatar-se</button>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Desenvolvedor Mobile (iOS/Android)</h2>
+                <p class="company-name">AppNation Studio</p>
+                <p class="job-description">Oportunidade para desenvolver aplicações nativas e híbridas de alta performance.</p>
+                <button class="apply-button" onclick="candidatarVaga('Desenvolvedor Mobile')">Candidatar-se</button>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Administrador de Redes e Sistemas</h2>
+                <p class="company-name">NetLink Global</p>
+                <p class="job-description">Gestão de servidores Linux/Windows, configuração de switches e roteadores.</p>
+                <button class="apply-button" onclick="candidatarVaga('Administrador de Redes')">Candidatar-se</button>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Engenheiro de QA / Automação</h2>
+                <p class="company-name">QualityFirst Labs</p>
+                <p class="job-description">Criação de planos de teste e desenvolvimento de scripts automatizados.</p>
+                <button class="apply-button" onclick="candidatarVaga('Engenheiro de QA')">Candidatar-se</button>
+            </div>
+
+            <div class="job-card">
+                <h2 class="job-title">Engenheiro de Sistemas Embarcados</h2>
+                <p class="company-name">SmartCore Tech</p>
+                <p class="job-description">Desenvolvimento de firmware e integração de hardware/software para dispositivos inteligentes.</p>
+                <button class="apply-button" onclick="candidatarVaga('Engenheiro de Sistemas Embarcados')">Candidatar-se</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

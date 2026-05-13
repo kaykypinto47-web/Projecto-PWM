@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Área dos Estudantes - Portal de Vagas">
+    <title>Portal de Vagas - Área dos Estudantes</title>
+    
+    <style>
+        /* ============================================
+           VARIÁVEIS E RESET
+        ============================================ */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary: #1e293b;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --radius-sm: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --radius-2xl: 2rem;
+        }
+
+        /* ============================================
+           RESET GLOBAL
+        ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ============================================
+           BASE DO CORPO
+        ============================================ */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, var(--gray-100) 0%, var(--gray-50) 100%);
+            color: var(--gray-800);
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        /* ============================================
+           CONTAINER PRINCIPAL
+        ============================================ */
+        .box {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            backdrop-filter: blur(0px);
+        }
+
+        /* ============================================
+           HEADER
+        ============================================ */
+        .header {
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+                url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1400&auto=format&fit=crop') center/cover no-repeat;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1.5rem 2rem;
+}
+        .header-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary), #1e40af);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img span {
+            color: var(--white);
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .titles {
+            text-align: center;
+            padding: 1.5rem 1rem 0.5rem 1rem;
+            background: var(--transparent);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gray-800), var(--primary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            border-bottom: 2px solid var(--gray-200);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        /* ============================================
+           NAVEGAÇÃO
+        ============================================ */
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            background: var(--white);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #eef2ff;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-weight: 500;
+            padding: 0.6rem 1.3rem;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            background: var(--gray-100);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 14px -8px rgba(37, 99, 235, 0.5);
+        }
+
+        /* ============================================
+           BARRA DE BUSCA AVANÇADA
+        ============================================ */
+        .search-section {
+            background: var(--white);
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--gray-800);
+        }
+
+        .search-title h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-title p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .search-input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-input-wrapper input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input-wrapper input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        .search-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Filtros rápidos */
+        .filter-chips {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .chip {
+            background: var(--gray-100);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-200);
+        }
+
+        .chip:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .chip.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        /* Resultado da busca */
+        .search-result-info {
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+        }
+
+        .search-result-info.success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .search-result-info.warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .search-result-info.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* ============================================
+           TÍTULO DA SEÇÃO
+        ============================================ */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 2rem 0 1rem 0;
+            color: var(--gray-800);
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* ============================================
+           GRID DE VAGAS
+        ============================================ */
+        .vagas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+            padding: 2rem 2rem 3rem 2rem;
+        }
+
+        /* ============================================
+           CARDS DE VAGAS
+        ============================================ */
+        .job-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 1.6rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #eef2ff;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .job-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .job-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        .job-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .company-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: #eff6ff;
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            margin-bottom: 1rem;
+            letter-spacing: -0.2px;
+            align-self: flex-start;
+        }
+
+        .job-area {
+            background: var(--gray-100);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 0.8rem;
+        }
+
+        .job-description {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin: 0.75rem 0 1.5rem 0;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .apply-button {
+            background: var(--gray-100);
+            color: var(--gray-700);
+            font-weight: 600;
+            padding: 0.75rem 1.2rem;
+            border-radius: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-200);
+            cursor: pointer;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .apply-button:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Sem resultados */
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray-500);
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ============================================
+           TOAST NOTIFICAÇÕES
+        ============================================ */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--success);
+            color: var(--white);
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+            z-index: 9999;
+            animation: slideInRight 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: var(--shadow-xl);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .toast.erro {
+            background: var(--danger);
+        }
+
+        .toast.warning {
+            background: var(--warning);
+        }
+
+        .toast.info {
+            background: var(--info);
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* ============================================
+           RESPONSIVIDADE
+        ============================================ */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            
+            .nav-links {
+                gap: 0.5rem;
+                padding: 0.8rem 1rem;
+            }
+            
+            .nav-links a {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .vagas-grid {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+                gap: 1.2rem;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-btn {
+                padding: 0.8rem;
+            }
+            
+            .filter-chips {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.5rem;
+            }
+            
+            .job-card {
+                padding: 1.2rem;
+            }
+            
+            .toast {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+                border-radius: 30px;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-container">
+                <div class="logo-area">
+                    <div class="logo-img">
+                        <span>PV</span>
+                    </div>
+                </div>
+                <div class="titles">
+                    <h1 class="title">Portal de Vagas</h1>
+                    <h2 class="subtitle">Encontre as melhores oportunidades de estágio e emprego</h2>
+                </div>
+            </div>
+        </header>
+
+        <!-- NAVEGAÇÃO -->
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="estudantes.html" style="background: var(--primary); color: white;">Área dos Estudantes</a>
+            <a href="cadastro.html">Cadastrar</a>
+            <a href="login.html">Login</a>
+            <a href="empresas.html">Área das Empresas</a>
+            <a href="contactar.html">Contactar</a>
+        </div>
+
+        <!-- SEÇÃO DE BUSCA AVANÇADA -->
+        <div class="search-section">
+            <div class="search-container">
+                <div class="search-title">
+                    <h3>🔍 Encontre a vaga ideal para você</h3>
+                    <p>Pesquise por área de atuação, ramo de estágio ou palavra-chave</p>
+                </div>
+                
+                <div class="search-box">
+                    <div class="search-input-wrapper">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="searchInput" placeholder="Ex: Desenvolvimento Web, Marketing, Redes, Informática..." autocomplete="off">
+                    </div>
+                    <button class="search-btn" onclick="buscarVagas()">Buscar Vagas</button>
+                </div>
+                
+                <div class="filter-chips">
+                    <span class="chip" onclick="filtrarPorArea('todos')"> Todos</span>
+                    <span class="chip" onclick="filtrarPorArea('desenvolvimento')">💻 Desenvolvimento</span>
+                    <span class="chip" onclick="filtrarPorArea('marketing')">📢 Marketing</span>
+                    <span class="chip" onclick="filtrarPorArea('administrativo')">📊 Administrativo</span>
+                    <span class="chip" onclick="filtrarPorArea('dados')">📈 Dados</span>
+                    <span class="chip" onclick="filtrarPorArea('seguranca')">🔒 Segurança</span>
+                    <span class="chip" onclick="filtrarPorArea('redes')">🌐 Redes</span>
+                </div>
+                
+                <div id="searchResultInfo" class="search-result-info" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- TÍTULO -->
+        <h1 class="section-title">Vagas Disponíveis</h1>
+
+        <!-- GRID DE VAGAS -->
+        <div class="vagas-grid" id="vagasContainer">
+            <!-- As vagas serão carregadas dinamicamente -->
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // DADOS DAS VAGAS COM ÁREAS
+        // ============================================
+        const vagas = [
+            { 
+                id: 1, 
+                titulo: "Desenvolvedor Full-Stack", 
+                empresa: "TechFlow Solutions", 
+                area: "desenvolvimento",
+                tipo: "emprego",
+                descricao: "Procuramos desenvolvedores para atuar no ciclo completo de desenvolvimento, com foco em React, Node.js e bancos de dados. Requisitos: Experiência com JavaScript, TypeScript e frameworks modernos.",
+                requisitos: ["React", "Node.js", "TypeScript", "PostgreSQL"],
+                salario: "R$ 5.000 - R$ 7.000",
+                local: "Remoto"
+            },
+            { 
+                id: 2, 
+                titulo: "Estágio em Desenvolvimento Web", 
+                empresa: "Tech Solutions", 
+                area: "desenvolvimento",
+                tipo: "estagio",
+                descricao: "Buscamos um estagiário apaixonado por tecnologia para atuar no desenvolvimento de aplicações web. Aprendizado garantido com mentores experientes.",
+                requisitos: ["HTML", "CSS", "JavaScript", "Conhecimento básico de React"],
+                salario: "R$ 1.200 + Benefícios",
+                local: "Híbrido"
+            },
+            { 
+                id: 3, 
+                titulo: "Analista de Marketing Digital", 
+                empresa: "Creative Agency", 
+                area: "marketing",
+                tipo: "emprego",
+                descricao: "Procuramos um analista de marketing digital para gerenciar campanhas online, SEO, Google Ads e redes sociais.",
+                requisitos: ["SEO", "Google Ads", "Facebook Ads", "Google Analytics"],
+                salario: "R$ 3.500 - R$ 4.500",
+                local: "Remoto"
+            },
+            { 
+                id: 4, 
+                titulo: "Estágio em Marketing", 
+                empresa: "Digital Mind", 
+                area: "marketing",
+                tipo: "estagio",
+                descricao: "Auxiliar nas estratégias de marketing digital, criação de conteúdo e gestão de redes sociais.",
+                requisitos: ["Redes Sociais", "Criação de conteúdo", "Comunicação"],
+                salario: "R$ 1.000 + Transporte",
+                local: "Presencial"
+            },
+            { 
+                id: 5, 
+                titulo: "Assistente Administrativo", 
+                empresa: "Global Corp", 
+                area: "administrativo",
+                tipo: "emprego",
+                descricao: "Estamos contratando um assistente administrativo para apoiar as operações diárias do escritório, organização de documentos e atendimento.",
+                requisitos: ["Pacote Office", "Organização", "Atendimento ao cliente"],
+                salario: "R$ 2.200",
+                local: "Presencial"
+            },
+            { 
+                id: 6, 
+                titulo: "Engenheiro de Dados", 
+                empresa: "DataSphere AI", 
+                area: "dados",
+                tipo: "emprego",
+                descricao: "Construção de pipelines de dados robustos e treinamento de modelos de ML.",
+                requisitos: ["Python", "SQL", "ETL", "Cloud"],
+                salario: "R$ 8.000 - R$ 10.000",
+                local: "Remoto"
+            },
+            { 
+                id: 7, 
+                titulo: "Analista de Cibersegurança", 
+                empresa: "CyberGuard Inc.", 
+                area: "seguranca",
+                tipo: "emprego",
+                descricao: "Monitoramento de infraestrutura, auditoria de sistemas e implementação de protocolos.",
+                requisitos: ["Firewall", "SIEM", "Linux", "Redes"],
+                salario: "R$ 6.000 - R$ 8.000",
+                local: "Híbrido"
+            },
+            { 
+                id: 8, 
+                titulo: "Estágio em Redes", 
+                empresa: "NetLink Global", 
+                area: "redes",
+                tipo: "estagio",
+                descricao: "Auxiliar na gestão de servidores, configuração de switches e roteadores.",
+                requisitos: ["Linux", "Windows Server", "Conceitos de redes"],
+                salario: "R$ 1.100",
+                local: "Presencial"
+            },
+            { 
+                id: 9, 
+                titulo: "Administrador de Redes", 
+                empresa: "NetLink Global", 
+                area: "redes",
+                tipo: "emprego",
+                descricao: "Gestão de servidores Linux/Windows, configuração de switches e roteadores.",
+                requisitos: ["Linux", "Windows Server", "Cisco"],
+                salario: "R$ 5.000",
+                local: "Presencial"
+            },
+            { 
+                id: 10, 
+                titulo: "Engenheiro de QA", 
+                empresa: "QualityFirst Labs", 
+                area: "desenvolvimento",
+                tipo: "emprego",
+                descricao: "Criação de planos de teste e desenvolvimento de scripts automatizados.",
+                requisitos: ["Testes automatizados", "Selenium", "JavaScript"],
+                salario: "R$ 4.500",
+                local: "Remoto"
+            }
+        ];
+
+        let vagasFiltradas = [...vagas];
+        let termoBuscaAtual = '';
+        let areaAtual = 'todos';
+
+        // ============================================
+        // FUNÇÃO PARA MOSTRAR TOAST
+        // ============================================
+        function mostrarToast(mensagem, tipo = 'sucesso') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${tipo === 'erro' ? 'erro' : tipo === 'warning' ? 'warning' : tipo === 'info' ? 'info' : ''}`;
+            toast.innerHTML = mensagem;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 4000);
+        }
+
+        // ============================================
+        // FUNÇÃO PARA RENDERIZAR VAGAS
+        // ============================================
+        function renderizarVagas() {
+            const container = document.getElementById('vagasContainer');
+            
+            if (vagasFiltradas.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">🔍</div>
+                        <h3>Nenhuma vaga encontrada</h3>
+                        <p>Tente usar outros termos de busca ou explore outras áreas</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = vagasFiltradas.map(vaga => `
+                <div class="job-card">
+                    <h2 class="job-title">${vaga.titulo}</h2>
+                    <span class="company-name">🏢 ${vaga.empresa}</span>
+                    <div class="job-area">
+                        ${vaga.tipo === 'estagio' ? '🎓 ESTÁGIO' : '💼 EMPREGO'} • ${vaga.local}
+                    </div>
+                    <p class="job-description">${vaga.descricao}</p>
+                    <p style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 1rem;">
+                        MZN{vaga.salario}
+                    </p>
+                    <button class="apply-button" onclick="candidatarVaga(${vaga.id})">
+                        📝 Candidatar-se a esta vaga
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // ============================================
+        // FUNÇÃO PARA BUSCAR VAGAS
+        // ============================================
+        function buscarVagas() {
+            const termo = document.getElementById('searchInput').value.toLowerCase().trim();
+            termoBuscaAtual = termo;
+            
+            // Filtrar vagas baseado no termo de busca e área
+            let resultado = [...vagas];
+            
+            // Filtrar por área
+            if (areaAtual !== 'todos') {
+                resultado = resultado.filter(v => v.area === areaAtual);
+            }
+            
+            // Filtrar por termo de busca
+            if (termo !== '') {
+                resultado = resultado.filter(vaga => 
+                    vaga.titulo.toLowerCase().includes(termo) ||
+                    vaga.empresa.toLowerCase().includes(termo) ||
+                    vaga.descricao.toLowerCase().includes(termo) ||
+                    vaga.area.toLowerCase().includes(termo) ||
+                    vaga.requisitos.some(r => r.toLowerCase().includes(termo)) ||
+                    vaga.tipo.toLowerCase().includes(termo)
+                );
+            }
+            
+            vagasFiltradas = resultado;
+            
+            // Mostrar resultado da busca com notificações
+            const resultInfo = document.getElementById('searchResultInfo');
+            
+            if (termo !== '') {
+                if (vagasFiltradas.length > 0) {
+                    // Encontrou vagas
+                    const temEstagio = vagasFiltradas.some(v => v.tipo === 'estagio');
+                    const temEmprego = vagasFiltradas.some(v => v.tipo === 'emprego');
+                    
+                    let mensagem = `Encontramos ${vagasFiltradas.length} vaga(s) para "${termo}"! `;
+                    if (temEstagio && temEmprego) {
+                        mensagem += `Temos oportunidades de estágio e emprego disponíveis.`;
+                        mostrarToast(`${vagasFiltradas.length} vagas encontradas! Há estágios e empregos disponíveis para sua área.`, 'success');
+                    } else if (temEstagio) {
+                        mensagem += `Temos estágios disponíveis para você começar sua carreira!`;
+                        mostrarToast(`🎓 Ótima notícia! Encontramos ${vagasFiltradas.length} estágio(s) na área "${termo}". Candidate-se agora!`, 'info');
+                    } else {
+                        mensagem += `Temos oportunidades de emprego esperando por você!`;
+                        mostrarToast(`💼 Excelente! ${vagasFiltradas.length} vaga(s) de emprego encontradas na área "${termo}".`, 'success');
+                    }
+                    
+                    resultInfo.className = 'search-result-info success';
+                    resultInfo.innerHTML = `${mensagem}`;
+                    resultInfo.style.display = 'block';
+                    
+                } else {
+                    // Nenhuma vaga encontrada
+                    resultInfo.className = 'search-result-info error';
+                    resultInfo.innerHTML = `Nenhuma vaga encontrada para "${termo}". Tente: desenvolvimento, marketing, dados, redes, administrativo...`;
+                    resultInfo.style.display = 'block';
+                    mostrarToast(`Infelizmente não encontramos vagas para "${termo}". Tente outras palavras-chave como: desenvolvimento, marketing, dados, redes, administrativo`, 'warning');
+                    
+                    // Sugestões
+                    const sugestoes = ['desenvolvimento', 'marketing', 'dados', 'redes', 'administrativo'];
+                    const sugestoesRelevantes = sugestoes.filter(s => s.includes(termo) || termo.includes(s));
+                    if (sugestoesRelevantes.length > 0) {
+                        setTimeout(() => {
+                            mostrarToast(`💡 Dica: Experimente buscar por "${sugestoesRelevantes[0]}"`, 'info');
+                        }, 2000);
+                    }
+                }
+            } else if (areaAtual !== 'todos') {
+                // Filtro por área
+                const areaNome = getAreaNome(areaAtual);
+                resultInfo.className = 'search-result-info info';
+                resultInfo.innerHTML = `📂 Mostrando ${vagasFiltradas.length} vaga(s) na área de ${areaNome}`;
+                resultInfo.style.display = 'block';
+                mostrarToast(`📂 ${vagasFiltradas.length} vaga(s) encontradas na área de ${areaNome}!`, 'info');
+            } else {
+                resultInfo.style.display = 'none';
+            }
+            
+            renderizarVagas();
+            
+            // Scroll suave para os resultados
+            document.getElementById('vagasContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // ============================================
+        // FUNÇÃO PARA FILTRAR POR ÁREA
+        // ============================================
+        function filtrarPorArea(area) {
+            areaAtual = area;
+            termoBuscaAtual = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            // Atualizar chips ativos
+            document.querySelectorAll('.chip').forEach(chip => {
+                chip.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            buscarVagas();
+        }
+        
+        // ============================================
+        // FUNÇÃO PARA OBTER NOME DA ÁREA
+        // ============================================
+        function getAreaNome(area) {
+            const areas = {
+                'todos': 'Todas as áreas',
+                'desenvolvimento': 'Desenvolvimento',
+                'marketing': 'Marketing',
+                'administrativo': 'Administrativo',
+                'dados': 'Dados e IA',
+                'seguranca': 'Segurança da Informação',
+                'redes': 'Redes e Infraestrutura'
+            };
+            return areas[area] || area;
+        }
+        
+        // ============================================
+        // FUNÇÃO PARA CANDIDATAR-SE
+        // ============================================
+        function candidatarVaga(vagaId) {
+            const vaga = vagas.find(v => v.id === vagaId);
+            const usuarioLogado = localStorage.getItem('usuarioLogado');
+            
+            if (!usuarioLogado) {
+                mostrarToast('⚠️ Você precisa estar logado para se candidatar!', 'warning');
+                setTimeout(() => {
+                    if (confirm('Deseja ir para a página de login?')) {
+                        window.location.href = 'login.html';
+                    }
+                }, 500);
+                return;
+            }
+            
+            const usuario = JSON.parse(usuarioLogado);
+            
+            if (usuario.tipo !== 'estudante') {
+                mostrarToast('Esta área é exclusiva para estudantes!', 'erro');
+                return;
+            }
+            
+            // Mostrar confirmação com detalhes da vaga
+            mostrarToast(`Excelente escolha! Redirecionando para candidatura da vaga: ${vaga.titulo} na ${vaga.empresa}`, 'success');
+            
+            localStorage.setItem('vagaSelecionada', JSON.stringify(vaga));
+            
+            setTimeout(() => {
+                window.location.href = 'candidatura.html';
+            }, 1500);
+        }
+        
+        // ============================================
+        // FUNÇÃO PARA BUSCAR AO PRESSIONAR ENTER
+        // ============================================
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                buscarVagas();
+            }
+        });
+        
+        // ============================================
+        // INICIALIZAR PÁGINA
+        // ============================================
+        function inicializar() {
+            renderizarVagas();
+            
+            // Verificar se há usuário logado
+            const usuarioLogado = localStorage.getItem('usuarioLogado');
+            if (usuarioLogado) {
+                const usuario = JSON.parse(usuarioLogado);
+                if (usuario.tipo === 'estudante') {
+                    setTimeout(() => {
+                        mostrarToast(`🎓 Olá ${usuario.nome}! Explore as vagas disponíveis e encontre a oportunidade ideal para você.`, 'info');
+                    }, 500);
+                }
+            }
+            
+            // Mostrar dica de busca
+            setTimeout(() => {
+                mostrarToast('💡 Dica: Use palavras como "desenvolvimento", "marketing", "dados" para encontrar vagas específicas!', 'info');
+            }, 2000);
+        }
+        
+        inicializar();
+    </script>
+</body>
+</html>

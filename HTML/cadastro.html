@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Vagas - Cadastro</title>
+    <style>
+       * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+ 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #0f172a;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+ 
+        .box {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+ 
+
+ 
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: relative;
+}
+ 
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+ 
+        .logo-img span {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+ 
+        .titles {
+            text-align: center;
+            padding: 2rem 1rem 0.5rem 1rem;
+            background: white;
+        }
+ 
+        .title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e293b, #2563eb);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: black;
+            margin-bottom: 0.5rem;
+        }
+ 
+        .subtitle {
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: #334155;
+            border-bottom: 2px solid #e2e8f0;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+ 
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background: #ffffff;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #eef2ff;
+        }
+ 
+        .nav-links a {
+            text-decoration: none;
+            color: #1f2937;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            transition: all 0.2s;
+            background: #f8fafc;
+            font-size: 0.95rem;
+        }
+ 
+        .nav-links a:hover {
+            background: #2563eb;
+            color: white;
+        }
+ 
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 2rem 0 1rem 0;
+            color: #0f172a;
+            position: relative;
+        }
+ 
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+ 
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+ 
+        .card-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05);
+        }
+ 
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+ 
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+ 
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+ 
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px #3b82f620;
+        }
+ 
+        .form-group input.error {
+            border-color: #e74c3c;
+        }
+ 
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+ 
+        .error-message.show {
+            display: block;
+        }
+ 
+        .validation-section {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+ 
+        .validation-section h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+ 
+        .validation-section p {
+            color: #78350f;
+            font-size: 0.85rem;
+        }
+ 
+        .document-upload {
+            border: 2px dashed #cbd5e1;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+ 
+        .document-upload:hover {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+ 
+        .document-name {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+ 
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+ 
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+ 
+        .link-text {
+            text-align: center;
+            margin-top: 1rem;
+        }
+ 
+        .link-text a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+ 
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #27ae60;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+        }
+ 
+        .toast.erro {
+            background: #e74c3c;
+        }
+ 
+        .toast.warning {
+            background: #f59e0b;
+        }
+ 
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+ 
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .title { font-size: 2rem; }
+            .header-container { flex-direction: column; text-align: center; }
+            .form-container { padding: 1rem; }
+            .card-form { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <header class="header">
+            <div class="header-container">
+                <div class="logo-area">
+                    <div class="logo-img">
+                        <span>PV</span>
+                    </div>
+                </div>
+                <div class="titles">
+                    <h1 class="title">Portal de Vagas</h1>
+                    <h2 class="subtitle">Encontre as melhores oportunidades de estágio e emprego</h2>
+                </div>
+            </div>
+        </header>
+ 
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="estudantes.html">Área dos Estudantes</a>
+            <a href="cadastro.html">Cadastrar</a>
+            <a href="login.html">Login</a>
+            <a href="empresas.html">Área das Empresas</a>
+            <a href="contactar.html">Contactar</a>
+        </div>
+ 
+        <h1 class="section-title">📝 Criar Conta</h1>
+ 
+        <div class="form-container">
+            <div class="card-form">
+                <form onsubmit="return cadastrar(event)">
+                    <div class="form-group">
+                        <label>Nome completo *</label>
+                        <input type="text" id="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail *</label>
+                        <input type="email" id="email" required>
+                        <div class="error-message" id="emailError">Este e-mail já está cadastrado</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de conta *</label>
+                        <select id="tipo" required onchange="toggleValidacaoEmpresa()">
+                            <option value="estudante">👨‍🎓 Estudante</option>
+                            <option value="empresa">🏢 Empresa</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Seção de Validação Anti-Fraude para Empresas -->
+                    <div id="validacaoEmpresa" style="display: none;">
+                        <div class="validation-section">
+                            <h4>⚠️AVISO</h4>
+                            <p>Para garantir a segurança do nosso portal, todas as empresas precisam passar por um processo de validação. Seus dados serão verificados antes da aprovação.</p>
+                        </div>
+ 
+                        <div class="form-group">
+                            <label>Número de Registro Oficial (NUIT/CNPJ) *</label>
+                            <input type="text" id="registroOficial" placeholder="Ex: 123456789 (NUIT) ou 12.345.678/0001-90 (CNPJ)">
+                            <div class="error-message" id="registroError">Digite um número de registro válido (mínimo 8 dígitos)</div>
+                        </div>
+ 
+                        <div class="form-group">
+                            <label>E-mail Corporativo (Domínio Próprio) *</label>
+                            <input type="email" id="emailCorporativo" placeholder="exemplo@empresa.com.br">
+                            <div class="error-message" id="corporativoError">Use um e-mail com domínio próprio da empresa (não use Gmail, Outlook, Hotmail)</div>
+                        </div>
+ 
+                        <div class="form-group">
+                            <label>Telefone para Contato *</label>
+                            <input type="tel" id="telefone" placeholder="(00) 00000-0000">
+                        </div>
+ 
+                        <div class="form-group">
+                            <label>Documento de Registro (Alvará / Comprovante Comercial) *</label>
+                            <div class="document-upload" onclick="document.getElementById('documentoFile').click()">
+                                📄 Clique para anexar o documento (PDF, JPG, PNG)
+                            </div>
+                            <input type="file" id="documentoFile" accept=".pdf,.jpg,.jpeg,.png" style="display: none;" onchange="anexarDocumento(this)">
+                            <div class="document-name" id="documentoNome"></div>
+                        </div>
+                    </div>
+ 
+                    <div class="form-group">
+                        <label>Senha *</label>
+                        <input type="password" id="senha" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirmar senha *</label>
+                        <input type="password" id="confirmarSenha" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Cadastrar</button>
+                </form>
+                <div class="link-text">
+                    Já tem conta? <a href="login.html">Faça login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <script>
+        // ─── Estado global ───────────────────────────────────────────────────
+        var documentoAnexado = null;
+        var documentoNomeArquivo = '';
+ 
+        // ─── Utilitários ─────────────────────────────────────────────────────
+ 
+        function mostrarToast(mensagem, tipo) {
+            tipo = tipo || 'sucesso';
+            var toast = document.createElement('div');
+            toast.className = 'toast' + (tipo === 'erro' ? ' erro' : tipo === 'warning' ? ' warning' : '');
+            toast.textContent = mensagem;
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                if (toast.parentNode) toast.parentNode.removeChild(toast);
+            }, 3500);
+        }
+ 
+        function obterUsuarios() {
+            try {
+                return JSON.parse(localStorage.getItem('usuarios') || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+ 
+        function salvarUsuarios(lista) {
+            localStorage.setItem('usuarios', JSON.stringify(lista));
+        }
+ 
+        // ─── Verificar se já está logado ─────────────────────────────────────
+        // Executa depois que o DOM carregou, para que mostrarToast funcione
+        window.addEventListener('DOMContentLoaded', function() {
+            var raw = localStorage.getItem('usuarioLogado');
+            if (!raw) return; // não está logado → carrega a página normalmente
+ 
+            try {
+                var usuario = JSON.parse(raw);
+                var destino = usuario.tipo === 'estudante' ? 'estudantes.html' : 'empresas.html';
+                mostrarToast('Você já está logado. Redirecionando...', 'warning');
+                setTimeout(function() {
+                    window.location.href = destino;
+                }, 1500);
+            } catch (e) {
+                // JSON corrompido → limpa e deixa abrir o cadastro
+                localStorage.removeItem('usuarioLogado');
+            }
+        });
+ 
+        // ─── Mostrar/esconder campos de empresa ──────────────────────────────
+        function toggleValidacaoEmpresa() {
+            var tipo = document.getElementById('tipo').value;
+            var divValidacao = document.getElementById('validacaoEmpresa');
+            var ehEmpresa = tipo === 'empresa';
+ 
+            divValidacao.style.display = ehEmpresa ? 'block' : 'none';
+ 
+            document.getElementById('registroOficial').required = ehEmpresa;
+            document.getElementById('emailCorporativo').required = ehEmpresa;
+            document.getElementById('telefone').required = ehEmpresa;
+        }
+ 
+        // ─── Validações ──────────────────────────────────────────────────────
+        function validarEmailCorporativo(email) {
+            var dominiosProibidos = [
+                'gmail.com', 'outlook.com', 'hotmail.com', 'yahoo.com',
+                'yahoo.com.br', 'aol.com', 'bol.com.br', 'uol.com.br',
+                'live.com', 'msn.com', 'icloud.com', 'mail.com'
+            ];
+            var partes = email.split('@');
+            if (partes.length !== 2) return false;
+            var dominio = partes[1];
+            return dominio && !dominiosProibidos.includes(dominio) && dominio.includes('.') && dominio.length > 3;
+        }
+ 
+        function validarRegistroOficial(registro) {
+            var apenasNumeros = registro.replace(/\D/g, '');
+            return apenasNumeros.length >= 8;
+        }
+ 
+        // ─── Upload de documento ─────────────────────────────────────────────
+        function anexarDocumento(input) {
+            if (!input.files || !input.files[0]) return;
+ 
+            var file = input.files[0];
+            var tiposPermitidos = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
+ 
+            if (!tiposPermitidos.includes(file.type)) {
+                mostrarToast('Tipo de arquivo não permitido. Use PDF, JPG ou PNG.', 'erro');
+                input.value = '';
+                return;
+            }
+ 
+            if (file.size > 5 * 1024 * 1024) {
+                mostrarToast('Arquivo muito grande. Máximo 5MB.', 'erro');
+                input.value = '';
+                return;
+            }
+ 
+            documentoNomeArquivo = file.name;
+            document.getElementById('documentoNome').textContent = '📎 Anexado: ' + documentoNomeArquivo;
+ 
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                documentoAnexado = e.target.result;
+            };
+            reader.onerror = function() {
+                mostrarToast('Erro ao ler o arquivo. Tente novamente.', 'erro');
+                documentoAnexado = null;
+                documentoNomeArquivo = '';
+            };
+            reader.readAsDataURL(file);
+        }
+ 
+        // ─── Cadastro ────────────────────────────────────────────────────────
+        function cadastrar(event) {
+            event.preventDefault();
+ 
+            var nome     = document.getElementById('nome').value.trim();
+            var email    = document.getElementById('email').value.trim();
+            var tipo     = document.getElementById('tipo').value;
+            var senha    = document.getElementById('senha').value;
+            var confirmar = document.getElementById('confirmarSenha').value;
+ 
+            // Validações básicas
+            if (senha !== confirmar) {
+                mostrarToast('As senhas não coincidem', 'erro');
+                return false;
+            }
+ 
+            if (senha.length < 6) {
+                mostrarToast('A senha deve ter no mínimo 6 caracteres', 'erro');
+                return false;
+            }
+ 
+            // Verificar e-mail duplicado
+            var usuarios = obterUsuarios();
+            var emailJaUsado = usuarios.some(function(u) { return u.email === email; });
+ 
+            if (emailJaUsado) {
+                document.getElementById('emailError').classList.add('show');
+                document.getElementById('email').classList.add('error');
+                mostrarToast('E-mail já cadastrado', 'erro');
+                return false;
+            }
+ 
+            document.getElementById('emailError').classList.remove('show');
+            document.getElementById('email').classList.remove('error');
+ 
+            // ── Empresa ──────────────────────────────────────────────────────
+            if (tipo === 'empresa') {
+                var registroOficial  = document.getElementById('registroOficial').value.trim();
+                var emailCorporativo = document.getElementById('emailCorporativo').value.trim();
+                var telefone         = document.getElementById('telefone').value.trim();
+                var valido = true;
+ 
+                if (!validarRegistroOficial(registroOficial)) {
+                    document.getElementById('registroError').classList.add('show');
+                    document.getElementById('registroOficial').classList.add('error');
+                    valido = false;
+                } else {
+                    document.getElementById('registroError').classList.remove('show');
+                    document.getElementById('registroOficial').classList.remove('error');
+                }
+ 
+                if (!validarEmailCorporativo(emailCorporativo)) {
+                    document.getElementById('corporativoError').classList.add('show');
+                    document.getElementById('emailCorporativo').classList.add('error');
+                    valido = false;
+                } else {
+                    document.getElementById('corporativoError').classList.remove('show');
+                    document.getElementById('emailCorporativo').classList.remove('error');
+                }
+ 
+                if (!documentoAnexado) {
+                    mostrarToast('É obrigatório anexar o documento de registro da empresa!', 'erro');
+                    valido = false;
+                }
+ 
+                if (!telefone) {
+                    mostrarToast('Informe o telefone para contato!', 'erro');
+                    valido = false;
+                }
+ 
+                if (!valido) return false;
+ 
+                var novaEmpresa = {
+                    id: Date.now(),
+                    nome: nome,
+                    email: email,
+                    senha: senha,
+                    telefone: telefone,
+                    tipo: 'empresa',
+                    dataCadastro: new Date().toLocaleString(),
+                    status: 'Pendente',
+                    dadosValidacao: {
+                        registroOficial: registroOficial,
+                        emailCorporativo: emailCorporativo,
+                        documento: documentoAnexado,
+                        documentoNome: documentoNomeArquivo,
+                        dataSolicitacao: new Date().toLocaleString()
+                    }
+                };
+ 
+                usuarios.push(novaEmpresa);
+                salvarUsuarios(usuarios);
+ 
+                // Fila de validação do administrador
+                var validacoes = [];
+                try {
+                    validacoes = JSON.parse(localStorage.getItem('empresasValidacao') || '[]');
+                } catch (e) { validacoes = []; }
+ 
+                validacoes.push({
+                    id: novaEmpresa.id,
+                    nomeEmpresa: nome,
+                    email: email,
+                    telefone: telefone,
+                    registroOficial: registroOficial,
+                    emailCorporativo: emailCorporativo,
+                    documento: documentoAnexado,
+                    documentoNome: documentoNomeArquivo,
+                    status: 'Pendente',
+                    dataSolicitacao: new Date().toLocaleString()
+                });
+                localStorage.setItem('empresasValidacao', JSON.stringify(validacoes));
+ 
+                mostrarToast('Solicitação enviada! Aguarde a validação do administrador.', 'sucesso');
+                setTimeout(function() {
+                    window.location.href = 'login.html';
+                }, 3000);
+ 
+            // ── Estudante ─────────────────────────────────────────────────────
+            } else {
+                var novoEstudante = {
+                    id: Date.now(),
+                    nome: nome,
+                    email: email,
+                    senha: senha,
+                    tipo: 'estudante',
+                    dataCadastro: new Date().toLocaleString(),
+                    status: 'Aprovado'
+                };
+ 
+                usuarios.push(novoEstudante);
+                salvarUsuarios(usuarios);
+ 
+                mostrarToast('Cadastro realizado com sucesso! Bem-vindo(a) ' + nome + '!', 'sucesso');
+                setTimeout(function() {
+                    window.location.href = 'login.html';
+                }, 1500);
+            }
+ 
+            return false;
+        }
+ 
+        // ─── Limpar erro de e-mail ao digitar ────────────────────────────────
+        document.getElementById('email').addEventListener('input', function() {
+            document.getElementById('emailError').classList.remove('show');
+            this.classList.remove('error');
+        });
+    </script>
+</body>
+</html>
+ 

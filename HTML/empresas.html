@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Vagas - Área das Empresas</title>
+    <style>
+        /* ============================================
+           VARIÁVEIS E RESET (mesmo estilo do estudantes)
+        ============================================ */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary: #1e293b;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --radius-sm: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --radius-2xl: 2rem;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, var(--gray-100) 0%, var(--gray-50) 100%);
+            color: var(--gray-800);
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        .box {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.95);
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 2rem;
+        }
+        .header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: relative;
+}
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            background: black (135deg, var(--primary), #1e40af);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img span {
+            color: var(--white);
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .titles {
+            text-align: center;
+            padding: 1.5rem 1rem 0.5rem 1rem;
+            background: var(--transparent);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gray-800), var(--primary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: rgb(9, 9, 9);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            border-bottom: 2px solid var(--gray-200);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            background: var(--white);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #eef2ff;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-weight: 500;
+            padding: 0.6rem 1.3rem;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            background: var(--gray-100);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           BUSCA PARA EMPRESAS
+        ============================================ */
+        .search-section {
+            background: var(--white);
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-title h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-800);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .search-input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-input-wrapper input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .search-input-wrapper input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        .search-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .chip {
+            background: var(--gray-100);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-200);
+        }
+
+        .chip:hover, .chip.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .search-result-info {
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: var(--radius-md);
+            display: none;
+        }
+
+        .search-result-info.success {
+            background: #dcfce7;
+            color: #166534;
+            display: block;
+        }
+
+        .search-result-info.warning {
+            background: #fef3c7;
+            color: #92400e;
+            display: block;
+        }
+
+        /* ============================================
+           CANDIDATOS
+        ============================================ */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 2rem 0 1rem 0;
+            color: var(--gray-800);
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .candidatos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .candidato-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid var(--gray-200);
+            transition: transform 0.2s;
+        }
+
+        .candidato-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .candidato-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .status-pendente {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-aprovado {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .btn-reject {
+            background: var(--danger);
+        }
+
+        .btn-approve {
+            background: var(--success);
+        }
+
+        .document-link {
+            display: inline-block;
+            background: var(--gray-100);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray-500);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--success);
+            color: white;
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+            z-index: 9999;
+            animation: slideInRight 0.3s ease;
+        }
+
+        .toast.warning {
+            background: var(--warning);
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .title { font-size: 1.8rem; }
+            .candidatos-grid { grid-template-columns: 1fr; }
+            .search-box { flex-direction: column; }
+            .search-btn { padding: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <header class="header">
+            <div class="header-container">
+                <div class="logo-area"><div class="logo-img"><span>PV</span></div></div>
+                <div class="titles">
+                    <h1 class="title">Portal de Vagas</h1>
+                    <h2 class="subtitle">Encontre as melhores oportunidades de estágio e emprego</h2>
+                </div>
+            </div>
+        </header>
+
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="estudantes.html">Área dos Estudantes</a>
+            <a href="cadastro.html">Cadastrar</a>
+            <a href="login.html">Login</a>
+            <a href="empresas.html" style="background: var(--primary); color: white;">Área das Empresas</a>
+            <a href="contactar.html">Contactar</a>
+        </div>
+
+        <!-- SEÇÃO DE BUSCA PARA EMPRESAS -->
+        <div class="search-section">
+            <div class="search-container">
+                <div class="search-title">
+                    <h3>🔍 Buscar Candidatos</h3>
+                    <p>Pesquise por candidatos por nome, curso, habilidades ou localização</p>
+                </div>
+                
+                <div class="search-box">
+                    <div class="search-input-wrapper">
+                        <span class="search-icon"></span>
+                        <input type="text" id="searchInput" placeholder="Ex: Desenvolvimento, Marketing, Redes...">
+                    </div>
+                    <button class="search-btn" onclick="buscarCandidatos()">Buscar Candidatos</button>
+                </div>
+                
+                <div class="filter-chips">
+                    <span class="chip active" onclick="filtrarStatus('todos')">📋 Todos</span>
+                    <span class="chip" onclick="filtrarStatus('pendentes')">⏳ Pendentes</span>
+                    <span class="chip" onclick="filtrarStatus('aprovados')">✅ Aprovados</span>
+                    <span class="chip" onclick="filtrarStatus('rejeitados')">❌ Rejeitados</span>
+                </div>
+                
+                <div id="searchResultInfo" class="search-result-info"></div>
+            </div>
+        </div>
+
+        <h1 class="section-title">📋 Candidaturas Recebidas</h1>
+        <div id="candidatosContainer" class="candidatos-grid">
+            <!-- Candidaturas serão carregadas aqui -->
+        </div>
+    </div>
+
+    <script>
+        let todosCandidatos = [];
+        let candidatosFiltrados = [];
+        let statusAtual = 'todos';
+        let termoBusca = '';
+
+        function carregarCandidatos() {
+            const usuarioLogado = localStorage.getItem('usuarioLogado');
+            if (!usuarioLogado) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const usuario = JSON.parse(usuarioLogado);
+            if (usuario.tipo !== 'empresa') {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            const chave = `candidaturas_${usuario.nome}`;
+            todosCandidatos = JSON.parse(localStorage.getItem(chave) || '[]');
+            candidatosFiltrados = [...todosCandidatos];
+            renderizarCandidatos();
+        }
+
+        function renderizarCandidatos() {
+            const container = document.getElementById('candidatosContainer');
+            
+            if (candidatosFiltrados.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">📭</div>
+                        <h3>Nenhum candidato encontrado</h3>
+                        <p>${termoBusca ? `Nenhum resultado para "${termoBusca}"` : 'Aguardando candidaturas...'}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = candidatosFiltrados.map(c => `
+                <div class="candidato-card">
+                    <h3>${c.nome}</h3>
+                    <p><strong>🎓 Vaga:</strong> ${c.vagaTitulo}</p>
+                    <p><strong>📧 Email:</strong> ${c.email}</p>
+                    <p><strong>📞 Telefone:</strong> ${c.telefone}</p>
+                    <p><strong>📍 Endereço:</strong> ${c.endereco.substring(0, 60)}...</p>
+                    <p><strong>📅 Candidatura:</strong> ${c.dataCandidatura}</p>
+                    <p><strong>💬 Mensagem:</strong> ${c.mensagem || 'Nenhuma mensagem'}</p>
+                    
+                    <div>
+                        <a href="#" class="document-link" onclick="visualizarDocumento('${c.certificadoBase64}', '${c.certificadoNome}')">📄 Ver Certificado</a>
+                        <a href="#" class="document-link" onclick="visualizarDocumento('${c.curriculoBase64}', '${c.curriculoNome}')">📄 Ver Currículo</a>
+                    </div>
+                    
+                    <span class="status-badge status-${c.status === 'Pendente' ? 'pendente' : (c.status === 'Aprovado' ? 'aprovado' : 'pendente')}">
+                        ${c.status}
+                    </span>
+                    
+                    <div>
+                        <button class="btn-action btn-approve" onclick="atualizarStatus(${c.id}, 'Aprovado')">✅ Aprovar</button>
+                        <button class="btn-action btn-reject" onclick="atualizarStatus(${c.id}, 'Rejeitado')">❌ Rejeitar</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function buscarCandidatos() {
+            termoBusca = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            let resultado = [...todosCandidatos];
+            
+            // Filtrar por status
+            if (statusAtual !== 'todos') {
+                resultado = resultado.filter(c => 
+                    statusAtual === 'pendentes' ? c.status === 'Pendente' :
+                    statusAtual === 'aprovados' ? c.status === 'Aprovado' :
+                    c.status === 'Rejeitado'
+                );
+            }
+            
+            // Filtrar por termo de busca
+            if (termoBusca !== '') {
+                resultado = resultado.filter(c => 
+                    c.nome.toLowerCase().includes(termoBusca) ||
+                    c.vagaTitulo.toLowerCase().includes(termoBusca) ||
+                    c.endereco.toLowerCase().includes(termoBusca) ||
+                    (c.mensagem && c.mensagem.toLowerCase().includes(termoBusca))
+                );
+            }
+            
+            candidatosFiltrados = resultado;
+            
+            const resultInfo = document.getElementById('searchResultInfo');
+            if (termoBusca !== '') {
+                if (candidatosFiltrados.length > 0) {
+                    resultInfo.className = 'search-result-info success';
+                    resultInfo.innerHTML = ` Encontramos ${candidatosFiltrados.length} candidato(s) para "${termoBusca}"!`;
+                    mostrarToast(` ${candidatosFiltrados.length} candidato(s) encontrado(s) para "${termoBusca}"!`);
+                } else {
+                    resultInfo.className = 'search-result-info warning';
+                    resultInfo.innerHTML = `Nenhum candidato encontrado para "${termoBusca}". Tente outros termos.`;
+                    mostrarToast(` Nenhum candidato encontrado para "${termoBusca}"`, 'warning');
+                }
+            } else {
+                resultInfo.style.display = 'none';
+            }
+            
+            renderizarCandidatos();
+        }
+
+        function filtrarStatus(status) {
+            statusAtual = status;
+            document.querySelectorAll('.chip').forEach(chip => chip.classList.remove('active'));
+            event.target.classList.add('active');
+            buscarCandidatos();
+        }
+
+        function visualizarDocumento(base64, nome) {
+            if (base64) {
+                window.open(base64, '_blank');
+            } else {
+                mostrarToast('Documento não disponível', 'warning');
+            }
+        }
+
+        function atualizarStatus(candidatoId, novoStatus) {
+            const usuarioLogado = localStorage.getItem('usuarioLogado');
+            if (!usuarioLogado) return;
+            
+            const usuario = JSON.parse(usuarioLogado);
+            const chave = `candidaturas_${usuario.nome}`;
+            let candidaturas = JSON.parse(localStorage.getItem(chave) || '[]');
+            
+            const index = candidaturas.findIndex(c => c.id === candidatoId);
+            if (index !== -1) {
+                candidaturas[index].status = novoStatus;
+                localStorage.setItem(chave, JSON.stringify(candidaturas));
+                
+                // Atualizar também no histórico geral
+                let historico = JSON.parse(localStorage.getItem('historicoCandidaturas') || '[]');
+                const histIndex = historico.findIndex(h => h.id === candidatoId);
+                if (histIndex !== -1) {
+                    historico[histIndex].status = novoStatus;
+                    localStorage.setItem('historicoCandidaturas', JSON.stringify(historico));
+                }
+                
+                todosCandidatos = candidaturas;
+                buscarCandidatos();
+                mostrarToast(` Candidatura ${novoStatus.toLowerCase()} com sucesso!`);
+            }
+        }
+
+        function mostrarToast(mensagem, tipo = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${tipo === 'warning' ? 'warning' : ''}`;
+            toast.innerHTML = mensagem;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        carregarCandidatos();
+    </script>
+</body>
+</html>

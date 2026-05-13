@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Vagas - Finalizar Candidatura</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #0f172a;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .card-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-header p {
+            opacity: 0.9;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .vaga-info {
+            background: #f0f9ff;
+            border-left: 4px solid #2563eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .vaga-info h3 {
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        .form-group label .required {
+            color: red;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px #3b82f620;
+        }
+
+        .file-upload {
+            border: 2px dashed #cbd5e1;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .file-upload:hover {
+            border-color: #2563eb;
+            background: #f0f9ff;
+        }
+
+        .file-upload input {
+            display: none;
+        }
+
+        .file-name {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .btn-submit {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-back {
+            background: #e2e8f0;
+            color: #1e293b;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #27ae60;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.erro {
+            background: #e74c3c;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .buttons { flex-direction: column; }
+            .btn-back { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>📝 Finalizar Candidatura</h1>
+                <p>Preencha todos os campos abaixo para concluir sua candidatura</p>
+            </div>
+            <div class="card-body">
+                <div class="vaga-info" id="vagaInfo">
+                    <!-- Informações da vaga serão carregadas aqui -->
+                </div>
+
+                <form id="formCandidatura" onsubmit="return enviarCandidatura(event)">
+                    <!-- Dados Pessoais -->
+                    <div class="form-group">
+                        <label>Nome completo <span class="required">*</span></label>
+                        <input type="text" id="nomeCompleto" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>E-mail <span class="required">*</span></label>
+                        <input type="email" id="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefone <span class="required">*</span></label>
+                        <input type="tel" id="telefone" required>
+                    </div>
+
+                    <!-- Endereço -->
+                    <div class="form-group">
+                        <label>Endereço completo <span class="required">*</span></label>
+                        <textarea id="endereco" rows="3" placeholder="Rua, número, bairro, cidade, CEP" required></textarea>
+                    </div>
+
+                    <!-- Upload do Certificado/Comprovativo -->
+                    <div class="form-group">
+                        <label>Certificado ou Carta de Comprovativo <span class="required">*</span></label>
+                        <div class="file-upload" onclick="document.getElementById('certificado').click()">
+                            <span>📄 Clique para fazer upload</span>
+                            <input type="file" id="certificado" accept=".pdf,.doc,.docx,.jpg,.png" onchange="mostrarNomeArquivo()">
+                        </div>
+                        <div class="file-name" id="certificadoNome">Nenhum arquivo selecionado</div>
+                        <small style="color: #64748b;">Formatos aceitos: PDF, DOC, DOCX, JPG, PNG (Máx: 5MB)</small>
+                    </div>
+
+                    <!-- Upload do Currículo -->
+                    <div class="form-group">
+                        <label>Currículo (CV) <span class="required">*</span></label>
+                        <div class="file-upload" onclick="document.getElementById('curriculo').click()">
+                            <span>📄 Clique para fazer upload do CV</span>
+                            <input type="file" id="curriculo" accept=".pdf,.doc,.docx" onchange="mostrarNomeCurriculo()">
+                        </div>
+                        <div class="file-name" id="curriculoNome">Nenhum arquivo selecionado</div>
+                        <small style="color: #64748b;">Formatos aceitos: PDF, DOC, DOCX (Máx: 5MB)</small>
+                    </div>
+
+                    <!-- Mensagem opcional -->
+                    <div class="form-group">
+                        <label>Mensagem para a empresa (opcional)</label>
+                        <textarea id="mensagem" rows="3" placeholder="Escreva uma mensagem para a empresa..."></textarea>
+                    </div>
+
+                    <div class="buttons">
+                        <button type="button" class="btn-back" onclick="voltar()">← Voltar</button>
+                        <button type="submit" class="btn-submit">✅ Enviar Candidatura</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let vagaSelecionada = null;
+        let arquivoCertificado = null;
+        let arquivoCurriculo = null;
+
+        // Carregar informações da vaga
+        function carregarVaga() {
+            const vagaSalva = localStorage.getItem('vagaSelecionada');
+            if (vagaSalva) {
+                vagaSelecionada = JSON.parse(vagaSalva);
+                document.getElementById('vagaInfo').innerHTML = `
+                    <h3>📌 Vaga selecionada</h3>
+                    <p><strong>Título:</strong> ${vagaSelecionada.titulo}</p>
+                    <p><strong>Empresa:</strong> ${vagaSelecionada.empresa}</p>
+                    <p><strong>Descrição:</strong> ${vagaSelecionada.descricao}</p>
+                `;
+            } else {
+                document.getElementById('vagaInfo').innerHTML = `
+                    <p style="color: #ef4444;">Nenhuma vaga selecionada. Por favor, volte e selecione uma vaga.</p>
+                `;
+            }
+        }
+
+        // Mostrar nome do arquivo de certificado
+        function mostrarNomeArquivo() {
+            const input = document.getElementById('certificado');
+            arquivoCertificado = input.files[0];
+            const nomeArquivo = document.getElementById('certificadoNome');
+            if (arquivoCertificado) {
+                nomeArquivo.textContent = `📄 ${arquivoCertificado.name}`;
+                nomeArquivo.style.color = '#27ae60';
+            } else {
+                nomeArquivo.textContent = 'Nenhum arquivo selecionado';
+                nomeArquivo.style.color = '#64748b';
+            }
+        }
+
+        // Mostrar nome do arquivo de currículo
+        function mostrarNomeCurriculo() {
+            const input = document.getElementById('curriculo');
+            arquivoCurriculo = input.files[0];
+            const nomeArquivo = document.getElementById('curriculoNome');
+            if (arquivoCurriculo) {
+                nomeArquivo.textContent = `📄 ${arquivoCurriculo.name}`;
+                nomeArquivo.style.color = '#27ae60';
+            } else {
+                nomeArquivo.textContent = 'Nenhum arquivo selecionado';
+                nomeArquivo.style.color = '#64748b';
+            }
+        }
+
+        // Validar arquivos
+        function validarArquivos() {
+            if (!arquivoCertificado) {
+                mostrarToast(' Por favor, faça upload do seu certificado ou carta de comprovativo', 'erro');
+                return false;
+            }
+            if (!arquivoCurriculo) {
+                mostrarToast('Por favor, faça upload do seu currículo', 'erro');
+                return false;
+            }
+            
+            // Verificar tamanho (5MB max)
+            const maxSize = 5 * 1024 * 1024;
+            if (arquivoCertificado.size > maxSize) {
+                mostrarToast('O certificado deve ter no máximo 5MB', 'erro');
+                return false;
+            }
+            if (arquivoCurriculo.size > maxSize) {
+                mostrarToast('O currículo deve ter no máximo 5MB', 'erro');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Função para converter arquivo para Base64
+        function arquivoParaBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Enviar candidatura
+        async function enviarCandidatura(event) {
+            event.preventDefault();
+            
+            if (!vagaSelecionada) {
+                mostrarToast(':(Nenhuma vaga selecionada', 'erro');
+                return false;
+            }
+            
+            if (!validarArquivos()) {
+                return false;
+            }
+            
+            // Obter dados do formulário
+            const candidato = {
+                id: Date.now(),
+                vagaId: vagaSelecionada.id,
+                vagaTitulo: vagaSelecionada.titulo,
+                empresa: vagaSelecionada.empresa,
+                nome: document.getElementById('nomeCompleto').value,
+                email: document.getElementById('email').value,
+                telefone: document.getElementById('telefone').value,
+                endereco: document.getElementById('endereco').value,
+                mensagem: document.getElementById('mensagem').value,
+                dataCandidatura: new Date().toLocaleString('pt-BR'),
+                certificadoNome: arquivoCertificado.name,
+                curriculoNome: arquivoCurriculo.name,
+                status: 'Pendente'
+            };
+            
+            // Converter arquivos para Base64
+            try {
+                candidato.certificadoBase64 = await arquivoParaBase64(arquivoCertificado);
+                candidato.curriculoBase64 = await arquivoParaBase64(arquivoCurriculo);
+            } catch (error) {
+                mostrarToast('❌ Erro ao processar os arquivos', 'erro');
+                return false;
+            }
+            
+            // Salvar candidatura no localStorage
+            let candidaturas = JSON.parse(localStorage.getItem('candidaturas') || '[]');
+            candidaturas.push(candidato);
+            localStorage.setItem('candidaturas', JSON.stringify(candidaturas));
+            
+            // Simular envio para a empresa (email)
+            enviarParaEmpresa(candidato);
+            
+            // Limpar a vaga selecionada
+            localStorage.removeItem('vagaSelecionada');
+            
+            mostrarToast(`✅ Candidatura enviada com sucesso para ${candidato.empresa}!`);
+            
+            // Redirecionar após 2 segundos
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+            
+            return false;
+        }
+        
+        // Função para simular envio para a empresa
+        function enviarParaEmpresa(candidato) {
+            // Salvar no localStorage para a empresa visualizar
+            let candidaturasEmpresa = JSON.parse(localStorage.getItem(`candidaturas_${candidato.empresa}`) || '[]');
+            candidaturasEmpresa.push(candidato);
+            localStorage.setItem(`candidaturas_${candidato.empresa}`, JSON.stringify(candidaturasEmpresa));
+            
+            // Também salvar no histórico geral
+            let historicoCandidaturas = JSON.parse(localStorage.getItem('historicoCandidaturas') || '[]');
+            historicoCandidaturas.push({
+                ...candidato,
+                empresaDestino: candidato.empresa
+            });
+            localStorage.setItem('historicoCandidaturas', JSON.stringify(historicoCandidaturas));
+            
+            console.log('Candidatura enviada para a empresa:', candidato.empresa);
+            console.log('Dados do candidato:', candidato);
+        }
+
+        // Função para voltar
+        function voltar() {
+            window.location.href = 'index.html';
+        }
+
+        // Função para mostrar toast
+        function mostrarToast(mensagem, tipo = 'sucesso') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${tipo === 'erro' ? 'erro' : ''}`;
+            toast.innerHTML = mensagem;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Carregar dados do usuário logado
+        function carregarDadosUsuario() {
+            const usuarioLogado = localStorage.getItem('usuarioLogado');
+            if (usuarioLogado) {
+                const usuario = JSON.parse(usuarioLogado);
+                document.getElementById('nomeCompleto').value = usuario.nome || '';
+                document.getElementById('email').value = usuario.email || '';
+            }
+        }
+
+        // Inicializar
+        carregarVaga();
+        carregarDadosUsuario();
+    </script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Vagas - Contactar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #0f172a;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        .box {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: relative;
+}
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img span {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .titles {
+            text-align: center;
+            padding: 2rem 1rem 0.5rem 1rem;
+            background: transparent;
+        }
+
+        .title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e293b, #2563eb);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: #334155;
+            border-bottom: 2px solid #e2e8f0;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background: #ffffff;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #eef2ff;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1f2937;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            transition: all 0.2s;
+            background: #f8fafc;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 2rem 0 1rem 0;
+            color: #0f172a;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-card h3 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            margin: 0.5rem 0;
+            color: #4b5563;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #27ae60;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .title { font-size: 2rem; }
+            .header-container { flex-direction: column; text-align: center; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <header class="header">
+            <div class="header-container">
+                <div class="logo-area">
+                    <div class="logo-img">
+                        <span>PV</span>
+                    </div>
+                </div>
+                <div class="titles">
+                    <h1 class="title">Portal de Vagas</h1>
+                    <h2 class="subtitle">Encontre as melhores oportunidades de estágio e emprego</h2>
+                </div>
+            </div>
+        </header>
+
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="estudantes.html">Área dos Estudantes</a>
+            <a href="cadastro.html">Cadastrar</a>
+            <a href="login.html">Login</a>
+            <a href="empresas.html">Área das Empresas</a>
+            <a href="contactar.html">Contactar</a>
+        </div>
+
+        <h1 class="section-title"> Contacte-nos</h1>
+
+        <div class="contact-grid">
+            <div class="info-card">
+                <h3>📍 Endereço</h3>
+                <p>Av. da Universidade, 1234</p>
+                <p>Maputo, Moçambique</p>
+            </div>
+            <div class="info-card">
+                <h3>📧 E-mail</h3>
+                <p>contato@portalvagas.com</p>
+                <p>suporte@portalvagas.com</p>
+            </div>
+            <div class="info-card">
+                <h3>📞 Telefone</h3>
+                <p>+258 87 074 9684</p>
+                <p>+258 87 304 9062</p>
+            </div>
+            <div class="info-card">
+                <h3>⏰ Horário</h3>
+                <p>Segunda a Sexta: 10h - 18h</p>
+                <p>Sábado: 10h - 15h</p>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <div class="contact-form">
+                <h3 style="margin-bottom: 1rem;">Envie uma mensagem</h3>
+                <form onsubmit="return enviarMensagem(event)">
+                    <div class="form-group">
+                        <input type="text" placeholder="Seu nome" id="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Seu e-mail" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Assunto" id="assunto" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Sua mensagem" rows="4" id="mensagem" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function mostrarToast(mensagem) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = mensagem;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function enviarMensagem(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            mostrarToast(` Mensagem enviada! Entraremos em contato em breve, ${nome}.`);
+            event.target.reset();
+            return false;
+        }
+    </script>
+</body>
+</html>

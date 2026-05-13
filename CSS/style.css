@@ -1,0 +1,379 @@
+/* ============================================
+   style.css - Portal de Vagas
+   Estilos Modernos e Responsivos
+============================================ */
+
+/* Reset e Estilos Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, 'Inter', sans-serif;
+    background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+    color: #0f172a;
+    line-height: 1.5;
+    padding: 2rem 1.5rem;
+}
+
+/* Container Principal */
+.box {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 2rem;
+    box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+/* Header Area */
+.header {
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+                url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1400&auto=format&fit=crop') center/cover no-repeat;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1.5rem 2rem;
+}
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: relative;
+}
+
+.logo-area {
+    flex-shrink: 0;
+}
+
+.logo-img {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-img span {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Títulos principais */
+.titles {
+    text-align: center;
+    padding: 2rem 1rem 0.5rem 1rem;
+    background:transparent;
+}
+
+.title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: white;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #2882ff;
+    border-bottom: 2px solid #e2e8f0;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+/* Navegação */
+.nav-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: #ffffff;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #eef2ff;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #1f2937;
+    font-weight: 500;
+    padding: 0.5rem 1.2rem;
+    border-radius: 40px;
+    transition: all 0.2s;
+    background: #f8fafc;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.nav-links a:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 14px -8px #2563eb80;
+}
+
+/* Formulário de busca */
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    background: white;
+    padding: 1.8rem 2rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #eef2ff;
+}
+
+.search-form label {
+    font-weight: 600;
+    color: #0f172a;
+    font-size: 1rem;
+}
+
+.search-form input[type="text"] {
+    min-width: 280px;
+    padding: 0.8rem 1.2rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 60px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background: #fefefe;
+}
+
+.search-form input[type="text"]:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px #3b82f620;
+}
+
+.search-form button {
+    background: #2563eb;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 60px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+.search-form button:hover {
+    background: #1d4ed8;
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px -8px #1e3a8a;
+}
+
+/* Seção de vagas em destaque */
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 2rem 0 1rem 0;
+    color: #0f172a;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 0.75rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: #3b82f6;
+    border-radius: 4px;
+}
+
+/* Grid de vagas */
+.featured-jobs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+    padding: 2rem 2rem 3rem 2rem;
+    background: #ffffffd9;
+}
+
+/* Cards */
+.job-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 1.6rem;
+    transition: all 0.25s ease;
+    border: 1px solid #eef2ff;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.job-card:hover {
+    transform: translateY(-6px);
+    border-color: #b9d0ff;
+    box-shadow: 0 20px 30px -12px rgba(37, 99, 235, 0.15);
+}
+
+.job-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.company-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #3b82f6;
+    background: #eff6ff;
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    border-radius: 30px;
+    margin-bottom: 1rem;
+    letter-spacing: -0.2px;
+    align-self: flex-start;
+}
+
+.job-description {
+    color: #334155;
+    font-size: 0.95rem;
+    margin: 0.75rem 0 1.5rem 0;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.apply-button {
+    background: #f1f5f9;
+    color: #1e293b;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.7rem 1.2rem;
+    border-radius: 40px;
+    text-align: center;
+    transition: all 0.2s;
+    border: 1px solid #e2e8f0;
+    margin-top: auto;
+    display: inline-block;
+    align-self: flex-start;
+    cursor: pointer;
+}
+
+.apply-button:hover {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+    box-shadow: 0 8px 18px -10px #2563eb;
+}
+
+/* TOAST MENSAGEM */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #27ae60;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    z-index: 9999;
+    animation: slideIn 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.toast.erro {
+    background: #e74c3c;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsividade para telas médias */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .nav-links a {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .search-form input[type="text"] {
+        min-width: 200px;
+    }
+    
+    .featured-jobs {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        gap: 0.5rem;
+    }
+    
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-form button,
+    .search-form input {
+        width: 100%;
+    }
+    
+    .job-card {
+        padding: 1.2rem;
+    }
+}
+
+/* Scroll suave e foco acessível */
+html {
+    scroll-behavior: smooth;
+}
+
+:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+
